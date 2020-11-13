@@ -314,7 +314,7 @@ export class Bluetooth extends React.Component<Props> {
                                     onPress={() => {
                                         {
                                             device.name == "HermesHub" ? this.props.navigation.navigate("키보드선택", { dev_name })
-                                                : device.name == "HermesSensor" ? this.props.navigation.navigate("센서와이파이", { dev_name, dev_mac })
+                                                : device.name == "HermesSensor" ? this.props.navigation.navigate("센서와이파이")
                                                     : this.state({ device: null })
                                         }
                                         this.setState({ device: null })
