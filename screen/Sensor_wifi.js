@@ -6,8 +6,6 @@ import BluetoothSerial from "react-native-bluetooth-serial-next";
 import Toast from "@remobile/react-native-toast";
 import RnBgTask from 'react-native-bg-thread';
 import utf8 from 'utf8';
-import firebase from '@react-native-firebase/app';
-import firestore from '@react-native-firebase/firestore';
 
 global.tmp = "";
 global.row = [];
@@ -41,18 +39,6 @@ export default class Sensor_wifi extends React.Component {
             console.log(e.message)
             Toast.showShortBottom("와이파이 목록 조회 실패, \r\nHermesSensor와 다시 블루투스 연결을 해주세요.")
         }
-    }
-
-    async send_to_server() {
-        const set_sensor = {
-            led_checker: 0,
-            mac_address: dev_mac,
-            sensor_name: "헤르메스센서",
-            sound: "null",
-            usage: "null",
-            user_token: token_,
-        };
-        const chatt = await firestore().collection("Live_translate").doc(dev_mac).set(set_sensor);
     }
 
     press_btn() {
@@ -96,7 +82,6 @@ export default class Sensor_wifi extends React.Component {
             Toast.showShortBottom("전송성공")
             this.setState({ pw: "" })
             send_index = ""
-            this.send_to_server()
         } catch (e) {
             console.log(e.message)
             Toast.showShortBottom("전송실패. HermesSensor와 다시 연결해주세요.")
